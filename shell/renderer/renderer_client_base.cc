@@ -517,6 +517,8 @@ void RendererClientBase::SetupMainWorldOverrides(
   // Wrap the bundle into a function that receives the isolatedApi as
   // an argument.
   auto* isolate = context->GetIsolate();
+  v8::HandleScope handle_scope(isolate);
+  v8::Context::Scope context_scope(context);
 
   gin_helper::Dictionary isolated_api = gin::Dictionary::CreateEmpty(isolate);
   isolated_api.SetMethod("allowGuestViewElementDefinition",
